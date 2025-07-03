@@ -80,9 +80,9 @@
     <div class="response" id="response"></div>
   </div>
 
-  <!-- Sürpriz Butonu ve Video -->
-  <button id="surprise-btn" style="margin-top: 3rem; font-size: 1.2rem; padding: 0.8rem 1.5rem; border-radius: 1rem; background: gold; color: black; font-weight: bold; cursor: pointer; box-shadow: 0 0 10px white;">
-    🎁 Sürpriz
+  <!-- Sürpriz Kalp Butonu ve Video -->
+  <button id="surprise-btn" style="margin-top: 3rem; font-size: 2rem; padding: 0.8rem 1.5rem; border-radius: 50%; background: red; color: white; font-weight: bold; cursor: pointer; box-shadow: 0 0 10px white;">
+    ❤️
   </button>
 
   <div id="surprise-video" style="display:none; margin-top: 2rem;">
@@ -149,19 +149,22 @@
       }, 3000);
     }
 
-    // Sürpriz butonu
+    // Sürpriz butonu video gösterir + kalp sayısını artırır
     document.getElementById("surprise-btn").addEventListener("click", function () {
       const videoBox = document.getElementById("surprise-video");
       videoBox.style.display = "block";
-      this.style.display = "none";
+      incrementHeart();
     });
 
-    // Kalp sayacı
-    let count = 0;
-    document.addEventListener("click", () => {
+    // Kalp sayacı (localStorage ile kalıcı)
+    let count = parseInt(localStorage.getItem('heartCount')) || 0;
+    document.getElementById("counter").textContent = count;
+
+    function incrementHeart() {
       count++;
       document.getElementById("counter").textContent = count;
-    });
+      localStorage.setItem('heartCount', count);
+    }
   </script>
 </body>
 </html>
