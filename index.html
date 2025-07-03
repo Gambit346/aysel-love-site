@@ -23,6 +23,14 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      opacity: 0;
+      animation: fadeIn 2s forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
     }
 
     .question-box {
@@ -68,21 +76,47 @@
       color: #ffe4e1;
       font-weight: bold;
     }
+
+    #visit-counter {
+      margin-top: 1.5rem;
+      font-size: 1rem;
+      color: #ffb6c1;
+    }
+
+    #secret-message {
+      display: none;
+      margin-top: 1.5rem;
+      color: gold;
+      font-size: 1.2rem;
+    }
   </style>
 </head>
 <body>
   <audio id="bg-music" autoplay loop>
-  <source src="elzem.mp3" type="audio/mpeg">
-</audio>
-<script>
-  document.addEventListener("click", () => {
-    const audio = document.getElementById("bg-music");
-    if (audio.paused) {
-    audio.play();
-    }
-  });
-</script>
+    <source src="elzem.mp3" type="audio/mpeg">
+  </audio>
 
+  <script>
+    document.addEventListener("click", () => {
+      const audio = document.getElementById("bg-music");
+      if (audio.paused) {
+        audio.play();
+      }
+    });
+
+    // Sevgi sayaç
+    let count = localStorage.getItem("visitCount") || 0;
+    count++;
+    localStorage.setItem("visitCount", count);
+    window.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("visit-counter").textContent = `Bu aşk sayfayı şu kadar kez ısıttı: ${count} 💓`;
+    });
+
+    // Kalbe basınca mesaj
+    function showSecret() {
+      document.getElementById("secret-message").style.display = 'block';
+    }
+  </script>
 
   <div class="question-box">
     <h1 id="question">Aysel Hanım beni seviyormusun?</h1>
@@ -91,6 +125,13 @@
       <button onclick="answer('no')">💔 HAYIR 💔</button>
     </div>
     <div class="response" id="response"></div>
+    <div id="visit-counter"></div>
+
+    <div style="margin-top: 1.5rem;">
+      <button onclick="window.location.href='tel:+905551112233'">📞 Beni Ara</button>
+      <button onclick="showSecret()">💖 Kalbe Bas</button>
+    </div>
+    <div id="secret-message">Bu siteye gizli bir aşk sakladım... Seni her şeyden çok seviyorum Aysel 💌</div>
   </div>
 
   <script>
@@ -135,7 +176,7 @@
           qBox.textContent = questions[current].q;
           res.textContent = '';
         } else {
-          qBox.innerHTML = 'Ayselitoom bitti 🥰 Seni çoooook seviyorum 💖💋<br><span style="font-size: 3rem;">💋</span>';
+          qBox.textContent = 'Ayselitoom bitti 🥰 Seni çoooook seviyorum 💖💋';
           document.querySelector('.answer-buttons').style.display = 'none';
         }
       }, 3000);
@@ -144,3 +185,4 @@
 </body>
 </html>
 
+ 
