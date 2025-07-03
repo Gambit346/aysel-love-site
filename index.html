@@ -80,11 +80,14 @@
     <div class="response" id="response"></div>
   </div>
 
-  <audio id="bg-music" autoplay loop>
+  <audio id="bg-music" loop>
     <source src="elzem.mp3" type="audio/mpeg">
   </audio>
 
   <script>
+    const audio = document.getElementById("bg-music");
+    let firstInteraction = false;
+
     const questions = [
       {
         q: 'Aysel Hanım beni seviyormusun?',
@@ -116,6 +119,11 @@
     let current = 0;
 
     function answer(ans) {
+      if (!firstInteraction) {
+        audio.play();
+        firstInteraction = true;
+      }
+
       const res = document.getElementById('response');
       const qBox = document.getElementById('question');
       res.textContent = ans === 'yes' ? questions[current].yes : questions[current].no;
