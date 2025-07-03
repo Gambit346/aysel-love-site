@@ -80,9 +80,18 @@
     <div class="response" id="response"></div>
   </div>
 
-  <audio id="bg-music" loop>
-    <source src="elzem.mp3" type="audio/mpeg">
-  </audio>
+<audio id="bg-music" autoplay loop>
+  <source src="elzem.mp3" type="audio/mpeg">
+</audio>
+<script>
+  document.addEventListener("click", () => {
+    const audio = document.getElementById("bg-music");
+    if (audio.paused) {
+      audio.play();
+    }
+  });
+</script>
+
 
   <script>
     const audio = document.getElementById("bg-music");
