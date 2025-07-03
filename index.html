@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -72,6 +71,10 @@
   </style>
 </head>
 <body>
+  <audio autoplay loop hidden>
+    <source src="muzik.mp3" type="audio/mpeg">
+  </audio>
+
   <div class="question-box">
     <h1 id="question">Aysel Hanım beni seviyormusun?</h1>
     <div class="answer-buttons">
@@ -123,7 +126,7 @@
           qBox.textContent = questions[current].q;
           res.textContent = '';
         } else {
-          qBox.textContent = 'Ayselitoom bitti 🥰 Seni çoooook seviyorum 💖💋';
+          qBox.innerHTML = 'Ayselitoom bitti 🥰 Seni çoooook seviyorum 💖💋<br><span style="font-size: 3rem;">💋</span>';
           document.querySelector('.answer-buttons').style.display = 'none';
         }
       }, 3000);
@@ -131,3 +134,4 @@
   </script>
 </body>
 </html>
+
